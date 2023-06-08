@@ -1,0 +1,65 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class BankAccount {
+private:
+    string accountNumber;
+    string accountOwner;
+    double balance;
+
+public:
+    BankAccount(string number, string owner, double initialBalance) {
+        accountNumber = number;
+        accountOwner = owner;
+        balance = initialBalance;
+    }
+
+    string getAccountNumber() {
+        return accountNumber;
+    }
+
+    string getAccountOwner() {
+        return accountOwner;
+    }
+
+    double getBalance() {
+        return balance;
+    }
+
+    void deposit(double amount) {
+        balance += amount;
+    }
+
+    void withdraw(double amount) {
+        if (amount <= balance) {
+            balance -= amount;
+        } else {
+            cout << "Недостатньо коштів на рахунку." << endl;
+        }
+    }
+};
+
+int main() {
+    // Створення об'єкту класу BankAccount
+    BankAccount account("1234567890", "John Doe", 1000.0);
+
+    // Виведення інформації про рахунок
+    cout << "Номер рахунку: " << account.getAccountNumber() << endl;
+    cout << "Власник рахунку: " << account.getAccountOwner() << endl;
+    cout << "Баланс: " << account.getBalance() << endl;
+
+    // Поповнення рахунку
+    account.deposit(500.0);
+
+    // Зняття коштів з рахунку
+    account.withdraw(200.0);
+
+    // Виведення оновленої інформації про рахунок
+    cout << "Номер рахунку: " << account.getAccountNumber() << endl;
+    cout << "Власник рахунку: " << account.getAccountOwner() << endl;
+    cout << "Баланс: " << account.getBalance() << endl;
+
+    return 0;
+}
